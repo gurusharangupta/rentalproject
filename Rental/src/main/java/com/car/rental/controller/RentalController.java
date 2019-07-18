@@ -38,11 +38,5 @@ public class RentalController {
 		return new ResponseEntity<>(expense, HttpStatus.OK);
 	}
 	
-	@GetMapping("/demo")
-	public String demo() {
-
-		return "hello there";
-
-	}
 
 }

@@ -1,7 +1,5 @@
 package com.car.rental.repository;
 
-import org.springframework.stereotype.Repository;
-
 import com.car.rental.model.AirCondition;
 import com.car.rental.model.Destination;
 import com.car.rental.model.Fuel;

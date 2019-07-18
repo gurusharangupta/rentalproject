@@ -44,7 +44,7 @@ public class RentalServiceImplTest {
 	@TestConfiguration
 	static class AccountServiceTestContextConfiguration {
 		@Bean
-		public RentalService accountService() {
+		public RentalService rentalService() {
 			return new RentalServiceImpl();
 		}
 	}
