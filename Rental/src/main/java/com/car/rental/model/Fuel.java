@@ -4,14 +4,14 @@ public enum Fuel {
 
 	PETROL(15), DIESEL(14);
 
-	private int fuel;
+	private int cost;
 
-	Fuel(int fuel) {
-		this.fuel = fuel;
+	Fuel(int cost) {
+		this.cost = cost;
 	}
 
-	public int getFuel() {
-		return fuel;
+	public int getCost() {
+		return cost;
 	}
 
 }

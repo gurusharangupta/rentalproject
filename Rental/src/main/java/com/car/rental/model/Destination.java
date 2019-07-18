@@ -1,12 +1,12 @@
 package com.car.rental.model;
 
-public enum Destinations {
+public enum Destination {
 
-	Pune(0), Mumbai(200), Bangalore(1000), Delhi(2050), Chennai(1234.5);
+	PUNE(0), MUMBAI(200), BANGLORE(1000), DELHI(2050), CHENNAI(1234.5);
 
 	private double distance;
 
-	Destinations(double distance) {
+	Destination(double distance) {
 		this.distance = distance;
 	}
 

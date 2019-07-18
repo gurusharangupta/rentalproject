@@ -1,20 +1,48 @@
 package com.car.rental.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.car.rental.exception.InvalidArgumentException;
 import com.car.rental.model.Expense;
 import com.car.rental.model.Trip;
+import com.car.rental.service.RentalService;
 
 @RestController
 public class RentalController {
 
-	@PostMapping("/expense")
-	public ResponseEntity<Expense> calculateExpense(Trip trip) {
+	@Autowired
+	private RentalService rentalService;
 
-		
-		return null;
+	@GetMapping("/expense")
+	public ResponseEntity<Expense> calculateExpense(@RequestParam("vehicleType") String vehicleType,
+			@RequestParam("airConditionType") String airConditionType,
+			@RequestParam("fuelType") String fuelType,
+			@RequestParam("city") String city,
+			@RequestParam("passenger") int passenger)throws InvalidArgumentException {
+			
+		Expense expense = new Expense();
+		Trip trip = new Trip(vehicleType,airConditionType,fuelType,city.toUpperCase(),passenger);
+		rentalService.checkTripValidity(trip);
+		double tripCost = rentalService.calculateCostForRoundTrip(trip);
+		expense.setCost(tripCost);
+		expense.setMessage("Cost for " + trip.getAirConditionType() + " " + trip.getVehicleType() + " travel to "
+				+ trip.getCity());
+		return new ResponseEntity<>(expense, HttpStatus.OK);
+	}
+	
+	@GetMapping("/demo")
+	public String demo() {
+
+		return "hello there";
+
 	}
 
 }
