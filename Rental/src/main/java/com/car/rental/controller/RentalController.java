@@ -22,11 +22,11 @@ public class RentalController {
 	private RentalService rentalService;
 
 	@GetMapping("/expense")
-	public ResponseEntity<Expense> calculateExpense(@RequestParam("vehicleType") String vehicleType,
-			@RequestParam("airConditionType") String airConditionType,
-			@RequestParam("fuelType") String fuelType,
-			@RequestParam("city") String city,
-			@RequestParam("passenger") int passenger)throws InvalidArgumentException {
+	public ResponseEntity<Expense> calculateExpense(@RequestParam(required=true,name="vehicleType") String vehicleType,
+			@RequestParam(required=true,name="airConditionType") String airConditionType,
+			@RequestParam(required=true,name="fuelType") String fuelType,
+			@RequestParam(required=true,name="city") String city,
+			@RequestParam(required=true,name="passenger") int passenger)throws InvalidArgumentException {
 			
 		Expense expense = new Expense();
 		Trip trip = new Trip(vehicleType,airConditionType,fuelType,city.toUpperCase(),passenger);
